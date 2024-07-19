@@ -1,0 +1,84 @@
+:root {
+  --box-size: 500px;
+  --floor-size: 10000px;
+}
+
+.box {
+  transform: translateX(calc(50vw - var(--box-size) / 2))
+    translateY(calc(50vh - var(--box-size) / 2));
+}
+
+.face {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--box-size);
+  height: var(--box-size);
+  border: 1px solid white;
+  & > p {
+    position: relative;
+    color: white;
+    font-size: 30px;
+  }
+}
+
+.top {
+  transform: rotateX(90deg) translateY(calc(-1 * var(--box-size) / 2))
+    translateZ(calc(var(--box-size) / 2));
+}
+.left {
+  transform: rotateY(270deg) translateX(calc(-1 * var(--box-size) / 2))
+    translateZ(calc(var(--box-size) / 2));
+}
+.bottom {
+  transform: translateY(calc(var(--box-size) / 2))
+    translateZ(calc(-1 * var(--box-size) / 2)) rotateX(270deg);
+}
+.right {
+  transform: rotateY(90deg) translateX(calc(var(--box-size) / 2))
+    translateZ(calc(var(--box-size) / 2));
+}
+.front {
+  transform: none;
+}
+.back {
+  transform: translateZ(calc(-1 * var(--box-size))) rotateY(180deg);
+}
+
+.floor {
+  width: var(--floor-size);
+  height: var(--floor-size);
+  transform: rotateX(90deg) translateX(calc(50vw - (var(--floor-size) / 2)))
+    translateY(-250px) translateZ(1000px);
+  border-radius: 50%;
+  background-color: #505050;
+}
+
+.world {
+  pointer-events: none;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  perspective: 800px;
+}
+
+body {
+  background-color: #555555;
+}
+
+.world * {
+  transform-style: preserve-3d;
+}
+
+.scene {
+  width: 0;
+  height: 0;
+  transform-origin: 50vw 50vh 800px;
+}
+
+* {
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+}
